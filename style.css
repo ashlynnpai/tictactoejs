@@ -1,0 +1,12 @@
+#board {
+  display: inline-block;
+  width: 330px;
+}
+
+.eachsquare {
+  float: left;
+  height: 100px;
+  width: 100px;
+  border-style: solid;
+  font-size: 50px;
+}
