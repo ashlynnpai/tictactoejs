@@ -6,10 +6,10 @@ for (var i=0; i<9; i++) {
 }
 
 $('.eachsquare').click(function() {
-	if (state != 1) {
-		$(this).html('X');
-	}
-	state = 1;
+  if (state != 1) {
+    $(this).html('X');
+  }
+  state = 1;
 })
 
 
