@@ -10,12 +10,6 @@ $( document ).ready(function() {
   $('.eachsquare').click(function(){
   if (state == 0) {
     $(this).html(piece);
-    if (piece = 'X') {
-      computerPiece = 'O';
-    }
-    else {
-      computerPiece = 'X';
-    }
     var num = parseInt(this.id.slice(-1));
     playerMove.push(num);
     checkWins(playerMove);
@@ -27,6 +21,32 @@ $( document ).ready(function() {
   }
   });
 });
+
+function drawBoard() {
+  $('#info').html('Tic Tac Toe');
+  for (var i=1; i<10; i++) {
+    mydiv = '<div class="eachsquare" id="square' + i + '"></div>';
+    $('#board').append(mydiv);
+  }
+}
+
+function startGame(){
+  $('#board').empty();
+  drawBoard();
+  $('#info').html('Choose a piece');
+  $('button').click(function() {
+    piece = this.id;
+    if (piece = 'X') {
+      computerPiece = 'O';
+    }
+    else {
+      computerPiece = 'X';
+    }
+  $('#info').html('You chose ' + piece + '. Choose a square.');
+  state = 0;
+  $('piece').hide();
+  });
+}
 
 function checkWins(arr) {
   var count = 0;
