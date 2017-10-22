@@ -1,24 +1,32 @@
 var state;
 var playerMove = [];
 var computerMove = [];
+var piece;
+var computerPiece;
 WINS = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]];
 
-for (var i=0; i<9; i++) {  
-  mydiv = '<div class="eachsquare" id="square' + i + '"></div>';
-  $('#board').append(mydiv);
-}
-
+$( document ).ready(function() {
+  startGame();
   $('.eachsquare').click(function(){
-    if (state != 1) {
-      $(this).html('X');
-      var num = parseInt(this.id.slice(-1));
-      playerMove.push(num);
-      checkWins(playerMove);
-      state = 1;
-      computerTurn();
-      checkWins(computerMove);
+  if (state == 0) {
+    $(this).html(piece);
+    if (piece = 'X') {
+      computerPiece = 'O';
     }
+    else {
+      computerPiece = 'X';
+    }
+    var num = parseInt(this.id.slice(-1));
+    playerMove.push(num);
+    checkWins(playerMove);
+    state = 1;
+    setTimeout(function() {
+      computerTurn();
+      }, 3000);
+    checkWins(computerMove);
+  }
   });
+});
 
 function checkWins(arr) {
   var count = 0;
