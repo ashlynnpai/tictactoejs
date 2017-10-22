@@ -78,18 +78,29 @@ function startGame(){
       }
     }
   };
-  
+
 function computerTurn() {
-  var computerOrder = [5, 1, 9, 3, 7, 2, 4, 6, 8];
-  console.log(playerMove);
-  for (var i=0; i<computerOrder.length; i++) {
-    if (!playerMove.includes(computerOrder[i]) &&  !computerMove.includes(computerOrder[i])) 
-    {
-      computerMove.push(computerOrder[i]);
-      console.log(computerOrder[i]);
-      $('#square' + [computerOrder[i]]).html("O");
-      break;
+  var finalChoice;
+  if (!playerMove.includes(5) &&  !computerMove.includes(5)) {
+   finalChoice = 5;
+   }
+  else {
+    finalChoice = leftovers();
+   }
+  computerMove.push(finalChoice);
+  $('#square' + finalChoice).html(computerPiece);
+    state = 0;
+}
+
+  
+  function leftovers() {
+    var computerOrder = [1, 9, 3, 7, 2, 4, 6, 8];
+    for (var i=0; i<computerOrder.length; i++) {
+      var computerChoice = computerOrder[i];
+      if (!playerMove.includes(computerChoice) &&  !computerMove.includes(computerChoice)) 
+      {
+        return computerChoice;
+      }
     }
   }
-  state = 0;
-}
+  
