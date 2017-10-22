@@ -48,22 +48,36 @@ function startGame(){
   });
 }
 
-function checkWins(arr) {
-  var count = 0;
-  for (var i=0; i<WINS.length; i++) {
-    for (var j=0; j<WINS[i].length; j++) {  
-      if (arr.includes(WINS[i][j])) {
-        count++;
+  function checkWins(arr) {
+    var count = 0;
+    for (var i=0; i<WINS.length; i++) {
+      for (var j=0; j<WINS[i].length; j++) {  
+        if (arr.includes(WINS[i][j])) {
+          count++;
+        }
+      }
+      if (count == 3) {
+        if (state == 0) {
+          $('#info').html('Player wins');
+        }
+        else {
+          $('#info').html('Computer wins');
+        }
+        setTimeout(function() {
+      startGame();
+      }, 15000);
+      }
+      else {
+        if (playerMove.length + computerMove.length == 9) {
+          $('#info').html('Tie');
+             setTimeout(function() {
+      startGame();
+      }, 15000);;
+        }
+        count = 0;
       }
     }
-    if (count == 3) {
-      console.log("win");
-    }
-    else {
-      count = 0;
-    }
-  }
-};
+  };
   
 function computerTurn() {
   var computerOrder = [5, 1, 9, 3, 7, 2, 4, 6, 8];
