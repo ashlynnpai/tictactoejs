@@ -125,16 +125,15 @@ function computerTurn() {
   }
   
 function two_in_a_row(arr) {
-  var tempWins = WINS.slice();
-  for (var i=0; i<tempWins.length; i++) {
-    var row = tempWins[i].slice();
-    for (var j=0; j<row.length; j++) {
-      if (arr.includes(row[j])) {
-        row.splice(j, 1); 
-        if (row.length == 1) {
-          return row.shift();
-        }
-      }
-    }
+  var tempWins = [];
+  for (var i=0; i<WINS.length; i++) {
+    tempWins[i] = WINS[i].slice();
+    var diff = $(tempWins[i]).not(arr).get();
+    if (diff.length == 1) {
+      console.log(diff);
+      return diff.shift();
+    } 
   }
 }
+
+
